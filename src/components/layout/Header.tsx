@@ -7,6 +7,7 @@ import Link from 'next/link';
 // Application
 import { ToggleTheme } from 'components/theme/ToggleTheme';
 import TweetLinkInput from 'components/common/TweetLinkInput';
+import TweetifyInfoGuide from 'components/common/TweetifyInfoGuide';
 
 const Header = (): JSX.Element => {
   return (
@@ -17,6 +18,7 @@ const Header = (): JSX.Element => {
         </h1>
       </Link>
       <TweetLinkInput />
+      <TweetifyInfoGuide />
       <div className='ml-4 sm:block'>
         <ToggleTheme />
       </div>
