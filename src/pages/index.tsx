@@ -1,8 +1,15 @@
+/**
+ * Home Page
+ */
 
-export default function Home() {
+import Header from 'components/layout/Header';
+
+const Home = (): JSX.Element => {
   return (
-    <div className='flex h-screen place-content-center items-center text-7xl'>
-      <h1>Hey cool..!</h1>
-    </div>
+    <main className='relative h-screen z-50 flex flex-col overflow-hidden'>
+      <Header />      
+    </main>
   );
 }
+
+export default Home;

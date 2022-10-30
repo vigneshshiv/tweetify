@@ -2,6 +2,7 @@
  * Tailwind config for CSS
  */
 const defaultTheme = require('tailwindcss/defaultTheme');
+const colors = require('./colors');
 
 /** 
  * @type {import('tailwindcss').Config} 
@@ -14,7 +15,9 @@ module.exports = {
     './src/styles/**/*.{js,ts,jsx,tsx}'
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors
+    }
   },
   plugins: [
     require('prettier-plugin-tailwindcss')
