@@ -11,7 +11,7 @@ export const RightArrowIcon = withSize(({ sizeClass }): JSX.Element => (
     viewBox="0 0 24 24"
     strokeWidth={1.5}
     stroke="currentColor"
-    className={cn(sizeClass, 'stroke-slate-700 group-hover:stroke-slate-900 dark:stroke-gray-500 dark:group-hover:stroke-gray-900')}
+    className={cn(sizeClass, 'stroke-slate-700 group-hover:stroke-slate-900 dark:stroke-gray-300 dark:group-hover:stroke-white')}
   >
     <path
       strokeLinecap="round"

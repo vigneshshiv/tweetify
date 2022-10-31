@@ -9,7 +9,7 @@ export const GithubIcon = withSize(({ sizeClass }): JSX.Element => (
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
     role="img"
-    className="h-[22px] w-[22px] fill-[#323232] dark:fill-white"
+    className={cn(sizeClass, 'fill-[#323232] dark:fill-white')}
   >
     <title>GitHub</title>
     <path 

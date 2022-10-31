@@ -10,7 +10,7 @@ export const SidePanelIcon = withSize(({ sizeClass }): JSX.Element => (
     width="16"
     height="16"
     fill="currentColor"
-    className="h-5 w-5 dark:fill-white"
+    className={cn(sizeClass, 'dark:fill-white')}
     viewBox="0 0 16 16"
   >
     <path d="M2 2a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2zm12-1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h12z" />

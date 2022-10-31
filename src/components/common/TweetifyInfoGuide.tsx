@@ -9,16 +9,17 @@ const TweetifyInfoGuide = (): JSX.Element => {
   const [isInfoGuideOpen, setInfoGuideOpen] = useState(false);
 
   return (
-    <div className='relative h-10 w-10'>
+    <div className='relative h-10 w-10 top-1 mr-auto'>
       <button
-        className='group flex w-5/6 h-5/6 items-center justify-center rounded-full bg-neutral-50 hover:bg-gray-100 dark:bg-gray-600 dark:hover:ring-1 ring-gray-300'
+        className='group flex w-5/6 h-5/6 items-center justify-center rounded-full bg-neutral-50 hover:bg-gray-100 dark:bg-neutral-dark dark:hover:ring-1 ring-gray-300'
         onClick={() => setInfoGuideOpen((c) => !c)}
       >
         <GuideInfoIcon size='lg' />
       </button>
       <aside
         className={cn(
-          'h-90 absolute -right-[108px] z-10 w-64 top-14 translate-y-40 self-end overflow-hidden rounded-mg bg-white opacity-1 shadow-[1px_1px_5px_rgba(0,0,0,0.25)] ease-out dark:bg-'
+          'h-90 absolute -right-[108px] z-10 w-64 top-14 translate-y-40 self-end overflow-hidden rounded-mg bg-white opacity-0 shadow-[1px_1px_5px_rgba(0,0,0,0.25)] ease-out dark:bg-secondary-dark',
+          isInfoGuideOpen ? '!translate-y-0 !opacity-100 transition-[transform,opacity] duration-200' : 'pointer-events-none transition-[transform,opacity] duration-200'
         )}
       >
         <h2 className='px-4 pt-6 font-bold text-gray-700 dark:text-white'>
@@ -33,7 +34,7 @@ const TweetifyInfoGuide = (): JSX.Element => {
           </li>
           <li>
             To move the card, press{' '}
-            <span className='rounded bg-gray-200 px-1 pb-0.5 dark:bg-[#5c5c5c]'>
+            <span className='rounded bg-gray-200 px-1 pb-0.5 dark:bg-lite-dark'>
               space
             </span>
             and the left mouse button.

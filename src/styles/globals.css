@@ -4,5 +4,5 @@
 
 html, 
 body {
-  @apply dark:bg-gray-800;
+  @apply dark:bg-primary-dark;
 }

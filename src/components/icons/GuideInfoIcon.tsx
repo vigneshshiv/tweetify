@@ -12,7 +12,7 @@ export const GuideInfoIcon = withSize(({ sizeClass }): JSX.Element => (
     viewBox="0 0 24 24"
     strokeWidth={1}
     stroke="currentColor"
-    className={cn(sizeClass, 'dark:text-gray-200')}
+    className={cn(sizeClass, 'dark:stroke-gray-200 dark:group-hover:stroke-white')}
   >
     <path
       strokeLinecap="round"
