@@ -6,3 +6,9 @@ html,
 body {
   @apply dark:bg-primary-dark;
 }
+
+@supports (scrollbar-width: thin) {
+  .firefox-padding-fix {
+    @apply !p-5;
+  }
+}

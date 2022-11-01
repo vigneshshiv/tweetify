@@ -2,6 +2,7 @@
  * Side Panel
  */
 import cn from 'classnames';
+import SizeCard from './sizecard';
 
 const SidePanel = ({ isPanelOpen }: { isPanelOpen: boolean }): JSX.Element => {
   return (
@@ -12,7 +13,7 @@ const SidePanel = ({ isPanelOpen }: { isPanelOpen: boolean }): JSX.Element => {
       <div
         className='scrollbar h-full overflow-y-auto rounded-md text-sm shadow-[1px_1px_5px_rgba(0,0,0,0.25)] dark:bg-secondary-dark dark:[&_h2]:text-white'
       >
-        {/* Sizes card */}
+        <SizeCard />
         {/* Colors card */}
         {/* Fonts Card */}
         {/* Templates Card */}
