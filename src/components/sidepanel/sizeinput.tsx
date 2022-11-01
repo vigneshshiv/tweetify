@@ -1,19 +1,20 @@
 /**
  * Size Input
  */
-
 import { Dispatch, KeyboardEvent, useEffect, useReducer, useRef, useState } from 'react';
 // Application
-import { useSize, useSizeDispatch } from 'utils/contexts/SizeContext';
 import { arrowReducer } from 'utils/reducers/ArrowReducer';
 import { isNumber } from 'utils/AppUtils';
 import { arrowState } from 'shared/base.data';
-import { SizeConfig, SizeConfigAction } from 'utils/types/base.types';
+import { SizeConfigAction } from 'utils/types/base.types';
 
-const SizeInput = ({ label }: { label: string}): JSX.Element => {
-  // Shared context size
-  const size = useSize();
-  const sizeDispatcher = useSizeDispatch();
+type SizeProps = {
+  label: string;
+  data: number;
+  sizeDispatcher: Dispatch<SizeConfigAction>
+}
+
+const SizeInput = ({ label, data, sizeDispatcher }: SizeProps): JSX.Element => {
   // Arrow
   const [arrow, arrowDispatcher] = useReducer(arrowReducer, arrowState);
   // Label Ref and databuffer states
@@ -22,13 +23,9 @@ const SizeInput = ({ label }: { label: string}): JSX.Element => {
   const [isPLRequested, setIsPLRequested] = useState(false);
 
   useEffect(() => {
-    const value = getSizeConfig(size!, label);
-    setDataBuffer(value + '');
-    return () => {
-      console.log('how many times');
-      setDataBuffer('');
-    }
-  }, [size, label]);
+    setDataBuffer(data + '');
+    return () => setDataBuffer('');
+  }, [data]);
 
   const keyDownHandler = (e: KeyboardEvent): void => {
     switch (e.code) {
@@ -81,8 +78,7 @@ const SizeInput = ({ label }: { label: string}): JSX.Element => {
     if (dataBuffer && isNumber(dataBuffer)) {
       dispatchHandler(sizeDispatcher!, +dataBuffer);
     } else {
-      const value = getSizeConfig(size!, label);
-      setDataBuffer(value + '');
+      setDataBuffer(data + '');
     }
   }
 
@@ -108,8 +104,7 @@ const SizeInput = ({ label }: { label: string}): JSX.Element => {
       type: 'X',
       X: arrow.X + e.movementX
     });
-    const value = getSizeConfig(size!, label);
-    dispatchHandler(sizeDispatcher!, e.movementX + value);
+    dispatchHandler(sizeDispatcher!, e.movementX + data);
   }
 
   const mouseUpHandler = (): void => {
@@ -125,16 +120,6 @@ const SizeInput = ({ label }: { label: string}): JSX.Element => {
       document.addEventListener('mousemove', incrementXRange);
     } else {
       document.removeEventListener('mousemove', incrementXRange);
-    }
-  }
-
-  const getSizeConfig = (size: SizeConfig, label: string): number => {
-    switch (label) {
-      case 'H': return size.height;
-      case 'W': return size.width;
-      case 'R': return size.radius;
-      case 'O': return size.opacity;
-      default: return 0;
     }
   }
 

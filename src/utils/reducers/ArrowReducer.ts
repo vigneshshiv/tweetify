@@ -1,7 +1,6 @@
 /**
  * Arrow Reducer
  */
-
 import { ArrowState, ArrowStateAction } from 'utils/types/base.types';
 
 export const arrowReducer = (arrow: ArrowState, action: ArrowStateAction): ArrowState => {
