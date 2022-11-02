@@ -19,6 +19,19 @@ export type SizeConfigAction =
   | { type: 'radius'; radius: number }
   | { type: 'opacity'; opacity: number };
 
+export type Font = {
+  id: string;
+  name: string;
+  value: any;
+}
+
+export type FontState = {
+  fonts: Font[];
+  selectedFont: Font;
+}
+
+export type FontAction = { type: 'selected-font'; font: Font }
+
 // Arrow State
 export type ArrowState = {
   isArrowVisible: boolean;
