@@ -14,9 +14,9 @@
   "dependencies": {
     "@headlessui/react": "1.7.3",
     "@heroicons/react": "2.0.12",
-    "@next/font": "13.0.0",
+    "@next/font": "13.0.1",
     "classnames": "2.3.2",
-    "next": "13.0.0",
+    "next": "13.0.1",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
@@ -28,7 +28,7 @@
     "@types/react-dom": "18.0.8",
     "autoprefixer": "10.4.13",
     "eslint": "8.26.0",
-    "eslint-config-next": "13.0.0",
+    "eslint-config-next": "13.0.1",
     "husky": "8.0.1",
     "postcss": "8.4.18",
     "prettier": "2.7.1",
