@@ -7,6 +7,48 @@ body {
   @apply dark:bg-primary-dark;
 }
 
+@layer base {
+  body {
+    line-height: 0.4;
+    vertical-align: text-bottom;
+  }
+}
+
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-gray-400;
+    border: 2px solid white;
+  }
+
+  .dark .scrollbar::-webkit-scrollbar-thumb {
+    border: 2px solid #2C2C2C;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply rounded-full bg-gray-500;
+  }
+
+  .dark .scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-[#5C5C5C];
+  }
+
+  .dark .scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-[#C0C0C0];
+  }
+
+  .scrollbar {
+    scrollbar-color: transparent;
+  }
+
+  .scrollbar:hover {
+    scrollbar-color: theme('colors.gray[400]') transparent;
+  }
+}
+
 @supports (scrollbar-width: thin) {
   .firefox-padding-fix {
     @apply !p-5;
