@@ -63,3 +63,14 @@ export type GradientState = {
 
 export type GradientAction = { type: 'selected-gradient'; gradient: Gradient };
 
+// Template
+export type Template = 
+  | 'standard'
+  | 'sleek'
+  | 'justify';
+
+export type TemplateState = {
+  selectedTemplate: Template;
+}
+
+export type TemplateAction = { type: 'selected-template'; template: Template };

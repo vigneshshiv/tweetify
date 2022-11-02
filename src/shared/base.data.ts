@@ -6,6 +6,7 @@ import InterFont from 'components/fonts/InterFont';
 import ReggaeOneFont from 'components/fonts/ReggaeOneFont';
 import RobotoSlabFont from 'components/fonts/RobotoFont';
 import TelexFont from 'components/fonts/TelexFont';
+import { Template } from 'utils/types/base.types';
 
 export const SizeConfigRange = {
   MIN_WIDTH: 500,
@@ -111,4 +112,9 @@ const gradientColors = [
 export const defaultGradients = {
   gradients: gradientColors,
   selectedGradient: gradientColors[0]
+}
+
+// Template
+export const defaultTemplate = {
+  selectedTemplate: 'standard' as Template
 }

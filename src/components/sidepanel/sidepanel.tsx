@@ -5,6 +5,7 @@ import cn from 'classnames';
 import ColorCard from './colorcard';
 import FontCard from './fontcard';
 import SizeCard from './sizecard';
+import TemplateCard from './templatecard';
 
 const SidePanel = ({ isPanelOpen }: { isPanelOpen: boolean }): JSX.Element => {
   return (
@@ -18,7 +19,7 @@ const SidePanel = ({ isPanelOpen }: { isPanelOpen: boolean }): JSX.Element => {
         <SizeCard />
         <ColorCard />
         <FontCard />
-        {/* Templates Card */}
+        <TemplateCard />
       </div>
     </aside>
   );
