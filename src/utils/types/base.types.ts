@@ -36,3 +36,17 @@ export type ArrowStateAction =
     Y: number
   }};
 
+// Gradient
+export type Gradient = {
+  id: number;
+  from: string;
+  to: string;
+}
+
+export type GradientState = {
+  gradients: Gradient[];
+  selectedGradient: Gradient;
+}
+
+export type GradientAction = { type: 'selected-gradient'; gradient: Gradient };
+
