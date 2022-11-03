@@ -3,13 +3,33 @@
  */
 import { RightArrowIcon } from 'components/icons/RightArrowIcon';
 import { FormEventHandler, useState } from 'react';
+import { useTweetStore } from 'utils/store/tweet.store';
 
 const TweetLinkInput = (): JSX.Element => {
   const [url, setUrl] = useState("");
+  // Tweet Store
+  const setTweetInfo = useTweetStore((state) => state.setTweetInfo);
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
-    // TODO: API Call
+    if (!url) return;
+    const response = await fetch("api/tweet-service", {
+      method: "POST",
+      body: JSON.stringify({ tweetUrl: url })
+    });
+    const { includes, data } = await response.json();
+    // Set TweetInfo for sync
+    setTweetInfo(() => ({
+      profileImage: includes.users[0].profile_image_url.replace("_normal", ""),
+      name: includes.users[0].name,
+      username: includes.users[0].username,
+      text: data.text,
+      retweets: data.public_metrics.retweet_count,
+      replies: data.public_metrics.reply_count,
+      likes: data.public_metrics.like_count
+    }));
+    // Update Url to blank
+    setUrl("");
   }
 
   return (

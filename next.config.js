@@ -1,13 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // experimental: {
-  //   fontLoaders: [{
-  //     loader: '@next/font/google',
-  //     options: { 
-  //       subsets: ['latin'] 
-  //     }
-  //   }],
-  // },
+  images: {
+    domains: ['pbs.twimg.com']
+  },
   reactStrictMode: true,
   swcMinify: true,
 }
