@@ -80,8 +80,8 @@ const gradientColors = [
   },
   {
     id: 3,
-    from: '#FFFBD5',
-    to: '#B20A2C'
+    from: '#BCE784',
+    to: '#5DD39E'
   },
   {
     id: 4,
@@ -90,13 +90,13 @@ const gradientColors = [
   },
   {
     id: 5,
-    from: '#F79D00',
-    to: '#64F38C'
+    from: '#76a7f4',
+    to: '#6071d7'
   },
   {
     id: 6,
-    from: '#00E1F4',
-    to: '#0064F4'
+    from: '#F79D00',
+    to: '#64F38C'
   },
   {
     id: 7,
