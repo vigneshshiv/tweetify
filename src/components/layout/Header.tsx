@@ -19,9 +19,9 @@ interface PanelProps {
 
 const Header = ({ setIsPanelOpen }: { setIsPanelOpen: Dispatcher<boolean> }): JSX.Element => {
   return (
-    <header className='flex items-center justify-between gap-x-4 py-3 md:pl-10 px-6'>
+    <header className='flex items-center justify-between gap-x-4 py-2 px-4 shadow dark:bg-secondary-dark'>
       <Link href='/' className='flex items-center justify-center'>
-        <h1 className='text-2xl lg:text-4xl font-bold mr-4 lg:mx-0 bg-clip-text tracking-widest text-transparent bg-gradient-to-r from-green-400 to-indigo-500'>
+        <h1 className='text-2xl font-bold bg-clip-text tracking-widest text-transparent bg-gradient-to-r from-green-400 to-indigo-500'>
           TWEETIFY
         </h1>
       </Link>
