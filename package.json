@@ -16,9 +16,12 @@
     "@heroicons/react": "2.0.12",
     "@next/font": "13.0.1",
     "classnames": "2.3.2",
+    "html2canvas": "1.4.1",
     "next": "13.0.1",
+    "re-resizable": "6.9.9",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "zustand": "4.1.4"
   },
   "devDependencies": {
     "@commitlint/cli": "17.1.2",
