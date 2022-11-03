@@ -1,7 +1,7 @@
 /**
  * Base Types
  */
-import React, { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 
 export type Dispatcher<S> = Dispatch<SetStateAction<S>>;
 
@@ -11,19 +11,18 @@ export type Font = {
   value: any;
 }
 
-// Zustand Types
 // Size Card State
 export interface CardState {
   height: number;
   width: number;
   radius: number;
   opacity: number;
-  fonts: Font[];
+  font: Font;
   setHeight: (callback: (height: number) => number) => void;
   setWidth: (callback: (width: number) => number) => void;
   setRadius: (callback: (radius: number) => number) => void;
   setOpacity: (callback: (opacity: number) => number) => void;
-  setFonts: (callback: (fonts: Font[]) => Font[]) => void;
+  setFont: (callback: (fonts: Font) => Font) => void;
 }
 
 // Arrow State
@@ -70,11 +69,30 @@ export type MoveBy = {
 }
 
 // Panel State
-export type PanelState = {
+export interface PanelState {
   isSpaceDown: boolean;
   isMouseDown: boolean;
   moveBy: MoveBy;
   setIsSpaceDown: (callback: (spaceDown: boolean) => boolean) => void;
   setIsMouseDown: (callback: (mouseDown: boolean) => boolean) => void;
   setMoveBy: (callback: (moveBy: MoveBy) => MoveBy) => void;
+}
+
+// Tweet State
+
+type TweetInfo = {
+  profileImage: string;
+  name: string;
+  username: string;
+  text: string;
+  retweets: number;
+  replies: number;
+  likes: number;
+}
+
+export interface TweetState {
+  tweetInfo: TweetInfo;
+  isMetricsVisible: boolean;
+  setTweetInfo: (callback: (tweetInfo: TweetInfo) => TweetInfo) => void;
+  setIsMetricsVisible: (callback: (metricsVisible: boolean) => boolean) => void;
 }

@@ -8,15 +8,22 @@ import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 // Application
 import { Font } from 'utils/types/base.types';
 import { defaultFonts } from 'shared/base.data';
+import { useTweetStore } from 'utils/store/tweet.store';
+import { useCardStore } from 'utils/store/card.store';
 
 const FontCard = (): JSX.Element => {
-  const [metricsVisible, setMetricsVisible] = useState(false);
+  // Font 
+  const setFont = useCardStore((state) => state.setFont);
   const [selectedFont, setSelectedFont] = useState(defaultFonts.fonts[0]);
-  
+  // Metrics
+  const metricsVisible = useTweetStore((state) => state.isMetricsVisible);
+  const setMetricsVisible = useTweetStore((state) => state.setIsMetricsVisible);
+
   const fontChangeHandler = (font: Font): void => {
+    setFont(() => font);
     setSelectedFont(font);
   }
-
+  
   return (
     <div className='firefox-padding-fix border-t p-5 pr-3 dark:border-lite-dark'>
       <h2 className='font-bold'>Text</h2>
@@ -89,7 +96,7 @@ const FontCard = (): JSX.Element => {
           </Switch.Label>
           <Switch
             checked={metricsVisible}
-            onChange={() => setMetricsVisible(!metricsVisible)}
+            onChange={() => setMetricsVisible(() => !metricsVisible)}
             className={cn('relative h-6 w-11 inline-flex items-center rounded-full transition-colors',
               metricsVisible ? 'bg-blue-600' : 'bg-gray-200 dark:bg-neutral-600'
             )}

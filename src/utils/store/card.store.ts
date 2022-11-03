@@ -11,7 +11,7 @@ export const useCardStore = create<CardState>((set) => ({
   width: defaultSize.width,
   radius: defaultSize.radius,
   opacity: defaultSize.opacity,
-  fonts: defaultFonts.fonts,
+  font: defaultFonts.fonts[0],
   setHeight(callback) {
     set(({ height }) => ({
       height: getValueInRange(callback(height), SizeConfigRange.MIN_HEIGHT)
@@ -32,9 +32,9 @@ export const useCardStore = create<CardState>((set) => ({
       opacity: getValueInRange(callback(opacity), SizeConfigRange.MIN_OPACITY, SizeConfigRange.MAX_OPACITY)
     }));
   },
-  setFonts(callback) {
-    set(({ fonts }) => ({
-      fonts: callback(fonts)
+  setFont(callback) {
+    set(({ font }) => ({
+      font: callback(font)
     }));
   }
 }));

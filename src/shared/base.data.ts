@@ -7,6 +7,7 @@ import ReggaeOneFont from 'components/fonts/ReggaeOneFont';
 import RobotoSlabFont from 'components/fonts/RobotoFont';
 import TelexFont from 'components/fonts/TelexFont';
 import { Template } from 'utils/types/base.types';
+import tweet from './tweet.json';
 
 export const SizeConfigRange = {
   MIN_WIDTH: 500,
@@ -124,4 +125,18 @@ export const defaultPanel = {
   isSpaceDown: false,
   isMouseDown: false,
   moveBy: { X: 0, Y: 0 }
+}
+
+// Tweet Data
+export const defaultTweet = {
+  tweetInfo: {
+    profileImage: tweet.profileImage,
+    name: 'Elon Musk',
+    username: 'elonmusk',
+    text: "It's not possible to learn everything.\n\nGreat software engineers are not those who know everything but those who can solve problems and adapt.",
+    retweets: 542,
+    replies: 3170,
+    likes: 67221,
+  },
+  isMetricsVisible: false,
 }

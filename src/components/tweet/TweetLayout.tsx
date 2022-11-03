@@ -5,6 +5,7 @@ import { MutableRefObject, useEffect, useState } from 'react';
 import { Resizable } from 're-resizable';
 import cn from 'classnames';
 // Application
+import TweetContent from './TweetContent';
 import { useCardStore } from 'utils/store/card.store';
 import { defaultSize, SizeConfigRange } from 'shared/base.data';
 import { useGradientStore } from 'utils/store/gradient.store';
@@ -88,12 +89,11 @@ const TweetLayout = ({ rootRef }: { rootRef : MutableRefObject<HTMLDivElement | 
         ref={rootRef}
         style={{
           background: cn('linear-gradient(to bottom right, ', gradient.from, ', ', gradient.to, ')'),
-          borderRadius: cn(radius, 'px')
+          borderRadius: cn(radius + 'px')
         }}
         className='flex h-full items-center justify-center overflow-hidden py-16 px-20 leading-normal shadow-md'
       >
-        {/* 
-        <TweetContent /> */}
+        <TweetContent />
       </div>
     </Resizable>
   );
