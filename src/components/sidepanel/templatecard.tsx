@@ -1,21 +1,17 @@
 /**
  * Template Card
  */
-import { useReducer } from 'react';
 import cn from 'classnames';
 // Application
-import { templateReducer } from 'utils/reducers/TemplateReducer';
-import { defaultTemplate } from 'shared/base.data';
 import { Template } from 'utils/types/base.types';
+import { useTemplateStore } from 'utils/store/template.store';
 
 const TemplateCard = (): JSX.Element => {
-  const [templateState, dispatch] = useReducer(templateReducer, defaultTemplate);
+  const selectedTemplate = useTemplateStore((state) => state.selectedTemplate);
+  const setSelectedTemplate = useTemplateStore((state) => state.setSelectedTemplate);
 
   const templateChangeHandler = (template: Template): void => {
-    dispatch({
-      type: 'selected-template',
-      template: template
-    });
+    setSelectedTemplate(() => template);
   }
 
   return (
@@ -27,7 +23,7 @@ const TemplateCard = (): JSX.Element => {
         <div
           className={cn(
             'rounded-lg p-3.5 ring-2 transition-shadow ', 
-            Object.is(templateState.selectedTemplate, 'standard' as Template) 
+            Object.is(selectedTemplate, 'standard' as Template) 
               ? 'ring-blue-400' 
               : 'ring-gray-200 dark:ring-neutral-600'
           )}
@@ -51,7 +47,7 @@ const TemplateCard = (): JSX.Element => {
         {/* Sleek */}
         <div className={cn(
           'rounded-lg p-3.5 ring-2 transition-shadow ',
-          Object.is(templateState.selectedTemplate, 'sleek' as Template)
+          Object.is(selectedTemplate, 'sleek' as Template)
             ? 'ring-blue-400'
             : 'ring-gray-200 dark:ring-neutral-600'
           )}
@@ -75,7 +71,7 @@ const TemplateCard = (): JSX.Element => {
         {/* Justify */}
         <div className={cn(
           'rounded-lg p-3.5 ring-2 transition-shadow ',
-          Object.is(templateState.selectedTemplate, 'justify' as Template)
+          Object.is(selectedTemplate, 'justify' as Template)
             ? 'ring-blue-400'
             : 'ring-gray-200 dark:ring-neutral-600'
           )}

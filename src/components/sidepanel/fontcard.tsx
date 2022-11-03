@@ -1,32 +1,26 @@
 /**
  * Font Card
  */
-import { Fragment, useReducer, useState, useEffect } from 'react';
+import { Fragment, useState } from 'react';
 import cn from 'classnames';
 import { Listbox, Switch, Transition} from '@headlessui/react';
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 // Application
-import { fontReducer } from 'utils/reducers/FontReducer';
-import { defaultFonts } from 'shared/base.data';
 import { Font } from 'utils/types/base.types';
-
+import { defaultFonts } from 'shared/base.data';
 
 const FontCard = (): JSX.Element => {
   const [metricsVisible, setMetricsVisible] = useState(false);
-  // Reducer
-  const [fontState, dispatch] = useReducer(fontReducer, defaultFonts);
+  const [selectedFont, setSelectedFont] = useState(defaultFonts.fonts[0]);
   
   const fontChangeHandler = (font: Font): void => {
-    dispatch({
-      type: 'selected-font',
-      font: font
-    });
+    setSelectedFont(font);
   }
 
   return (
     <div className='firefox-padding-fix border-t p-5 pr-3 dark:border-lite-dark'>
       <h2 className='font-bold'>Text</h2>
-      <Listbox value={fontState.selectedFont} onChange={fontChangeHandler}>
+      <Listbox value={selectedFont} onChange={fontChangeHandler}>
         <div className='mt-3 flex items-center gap-x-4'>
           <Listbox.Label className='text-gray-500'>
             Font
@@ -38,7 +32,7 @@ const FontCard = (): JSX.Element => {
                 focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 
                 dark:bg-neutral-600 dark:text-white'
             >
-              <span className='block truncate'>{fontState.selectedFont.name}</span>
+              <span className='block truncate'>{selectedFont.name}</span>
               <span className='pointer-events-none absolute flex items-center inset-y-0 right-0 pr-2'>
                 <ChevronUpDownIcon 
                   aria-hidden='true'
@@ -56,7 +50,7 @@ const FontCard = (): JSX.Element => {
                 className='absolute z-10 w-full max-h-60 overflow-auto mt-1 rounded-md bg-white py-1 text-base
                 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-neutral-600 sm:text-sm'
               >
-                {fontState.fonts.map((font, idx) => (
+                {defaultFonts.fonts.map((font, idx) => (
                   <Listbox.Option
                     key={idx}
                     className={({ active }) => cn(

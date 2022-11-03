@@ -1,26 +1,26 @@
 /**
  * Size Input
  */
-import { Dispatch, KeyboardEvent, useEffect, useReducer, useRef, useState } from 'react';
+import { KeyboardEvent, useEffect, useRef, useState } from 'react';
 // Application
-import { arrowReducer } from 'utils/reducers/ArrowReducer';
 import { isNumber } from 'utils/AppUtils';
-import { arrowState } from 'shared/base.data';
-import { SizeConfigAction } from 'utils/types/base.types';
+import { useArrowStore } from 'utils/store/arrow.store';
 
 type SizeProps = {
   label: string;
   data: number;
-  sizeDispatcher: Dispatch<SizeConfigAction>
+  action: (callback: (value: number) => number) => void;
 }
 
-const SizeInput = ({ label, data, sizeDispatcher }: SizeProps): JSX.Element => {
-  // Arrow
-  const [arrow, arrowDispatcher] = useReducer(arrowReducer, arrowState);
+const SizeInput = ({ label, data, action: setData }: SizeProps): JSX.Element => {
   // Label Ref and databuffer states
-  const _label_ref_ = useRef(null);
+  const labelRef = useRef(null);
   const [dataBuffer, setDataBuffer] = useState('');
   const [isPLRequested, setIsPLRequested] = useState(false);
+  // Arrow Store
+  const setIsArrowVisible = useArrowStore((state) => state.setIsArrowVisible);
+  const setX = useArrowStore((state) => state.setX);
+  const setY = useArrowStore((state) => state.setY);
 
   useEffect(() => {
     setDataBuffer(data + '');
@@ -30,10 +30,10 @@ const SizeInput = ({ label, data, sizeDispatcher }: SizeProps): JSX.Element => {
   const keyDownHandler = (e: KeyboardEvent): void => {
     switch (e.code) {
       case 'ArrowUp':
-        dispatchHandler(sizeDispatcher!, +dataBuffer + 1);
+        setData(() => +dataBuffer + 1);
         break;
       case 'ArrowDown':
-        dispatchHandler(sizeDispatcher!, +dataBuffer - 1);
+        setData(() => +dataBuffer - 1);
         break;
       case 'Enter':
       case 'NumpadEnter':
@@ -43,54 +43,18 @@ const SizeInput = ({ label, data, sizeDispatcher }: SizeProps): JSX.Element => {
     }
   }
 
-  const dispatchHandler = (sizeDispatcher: Dispatch<SizeConfigAction>, value: number): void => {
-    switch (label) {
-      case 'H': 
-        sizeDispatcher({
-          type: 'height',
-          height: value
-        });
-        break;
-      case 'W':
-        sizeDispatcher({
-          type: 'width',
-          width: value
-        });
-        break;
-      case 'R':
-        sizeDispatcher({
-          type: 'radius',
-          radius: value
-        });
-        break;
-      case 'O':
-        sizeDispatcher({
-          type: 'opacity',
-          opacity: value
-        });
-        break;
-      default:
-        break;
-    }
-  }
-
   const dispatchOrResetDataBuffer = (): void => {
     if (dataBuffer && isNumber(dataBuffer)) {
-      dispatchHandler(sizeDispatcher!, +dataBuffer);
+      setData(() => +dataBuffer);
     } else {
       setDataBuffer(data + '');
     }
   }
 
   const mouseDownHandler = (e: any): void => {
-    arrowDispatcher({
-      type: 'all', 
-      state: {
-        visible: true,
-        X: e.clientX - 10,
-        Y: e.clientY - 10
-      }
-    });
+    setIsArrowVisible(() => true);
+    setX(() => e.clientX - 10);
+    setY(() => e.clientY - 10);
     // PLRequested?
     if (!isPLRequested) {
       document.addEventListener('pointerlockchange', pointerLockChangeHandler);
@@ -100,23 +64,17 @@ const SizeInput = ({ label, data, sizeDispatcher }: SizeProps): JSX.Element => {
   }
 
   const incrementXRange = (e: any): void => {
-    arrowDispatcher({
-      type: 'X',
-      X: arrow.X + e.movementX
-    });
-    dispatchHandler(sizeDispatcher!, e.movementX + data);
+    setX((X) => X + e.movementX);
+    setData((data) => data + e.movementX);
   }
 
   const mouseUpHandler = (): void => {
     document.exitPointerLock();
-    arrowDispatcher({
-      type: 'visible',
-      visible: false
-    });
+    setIsArrowVisible(() => false);
   }
 
   const pointerLockChangeHandler = (): void => {
-    if (Object.is(document.pointerLockElement, _label_ref_.current)) {
+    if (Object.is(document.pointerLockElement, labelRef.current)) {
       document.addEventListener('mousemove', incrementXRange);
     } else {
       document.removeEventListener('mousemove', incrementXRange);
@@ -126,7 +84,7 @@ const SizeInput = ({ label, data, sizeDispatcher }: SizeProps): JSX.Element => {
   return (
     <label className='flex h-7 border border-transparent text-xs focus-within:border-blue-400 focus-within:ring-blue-400 hover:border-gray-200 hover:focus-within:border-blue-400 dark:hover:border-border-dark dark:hover:focus-within:border-blue-400'>
       <span
-        ref={_label_ref_}
+        ref={labelRef}
         onMouseDown={mouseDownHandler}
         onMouseUp={mouseUpHandler}
         className='flex w-[37%] items-center justify-center cursor-ew-resize select-none text-slate-500 dark:text-[#808080]'

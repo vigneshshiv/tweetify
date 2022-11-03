@@ -118,3 +118,10 @@ export const defaultGradients = {
 export const defaultTemplate = {
   selectedTemplate: 'standard' as Template
 }
+
+// Panel State
+export const defaultPanel = {
+  isSpaceDown: false,
+  isMouseDown: false,
+  moveBy: { X: 0, Y: 0 }
+}

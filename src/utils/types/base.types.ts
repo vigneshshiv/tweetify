@@ -5,49 +5,36 @@ import React, { Dispatch, SetStateAction } from 'react';
 
 export type Dispatcher<S> = Dispatch<SetStateAction<S>>;
 
-// Size Config
-export type SizeConfig = {
-  height: number;
-  width: number;
-  radius: number;
-  opacity: number;
-}
-
-export type SizeConfigAction = 
-  | { type: 'height'; height: number }
-  | { type: 'width'; width: number }
-  | { type: 'radius'; radius: number }
-  | { type: 'opacity'; opacity: number };
-
 export type Font = {
   id: string;
   name: string;
   value: any;
 }
 
-export type FontState = {
+// Zustand Types
+// Size Card State
+export interface CardState {
+  height: number;
+  width: number;
+  radius: number;
+  opacity: number;
   fonts: Font[];
-  selectedFont: Font;
+  setHeight: (callback: (height: number) => number) => void;
+  setWidth: (callback: (width: number) => number) => void;
+  setRadius: (callback: (radius: number) => number) => void;
+  setOpacity: (callback: (opacity: number) => number) => void;
+  setFonts: (callback: (fonts: Font[]) => Font[]) => void;
 }
 
-export type FontAction = { type: 'selected-font'; font: Font }
-
 // Arrow State
-export type ArrowState = {
+export interface ArrowState {
   isArrowVisible: boolean;
   X: number;
   Y: number;
+  setIsArrowVisible: (callback: (isArrowVisible: boolean) => boolean) => void;
+  setX: (callback: (X: number) => number) => void;
+  setY: (callback: (Y: number) => number) => void;
 }
-
-export type ArrowStateAction = 
-  | { type: 'visible'; visible: boolean }
-  | { type: 'X'; X: number }
-  | { type: 'Y'; Y: number }
-  | { type: 'all'; state: {
-    visible: boolean, 
-    X: number, 
-    Y: number
-  }};
 
 // Gradient
 export type Gradient = {
@@ -56,12 +43,13 @@ export type Gradient = {
   to: string;
 }
 
-export type GradientState = {
+// Gradient State
+export interface GradientState {
   gradients: Gradient[];
   selectedGradient: Gradient;
+  setGradients: (callback: (gradients: Gradient[]) => Gradient[]) => void;
+  setSelectedGradient: (callback: (selectedGradient: Gradient) => Gradient) => void;
 }
-
-export type GradientAction = { type: 'selected-gradient'; gradient: Gradient };
 
 // Template
 export type Template = 
@@ -69,8 +57,24 @@ export type Template =
   | 'sleek'
   | 'justify';
 
-export type TemplateState = {
+// Template State
+export interface TemplateState {
   selectedTemplate: Template;
+  setSelectedTemplate: (callback: (selectedTemplate: Template) => Template) => void;
 }
 
-export type TemplateAction = { type: 'selected-template'; template: Template };
+// MoveBy & Panel State
+export type MoveBy = {
+  X: number;
+  Y: number;
+}
+
+// Panel State
+export type PanelState = {
+  isSpaceDown: boolean;
+  isMouseDown: boolean;
+  moveBy: MoveBy;
+  setIsSpaceDown: (callback: (spaceDown: boolean) => boolean) => void;
+  setIsMouseDown: (callback: (mouseDown: boolean) => boolean) => void;
+  setMoveBy: (callback: (moveBy: MoveBy) => MoveBy) => void;
+}

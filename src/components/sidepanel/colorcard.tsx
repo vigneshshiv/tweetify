@@ -1,20 +1,21 @@
 /**
  * Color Card
  */
-import { useReducer } from 'react';
 import cn from 'classnames';
 // Application
-import { defaultGradients } from 'shared/base.data';
-import { gradientReducer } from 'utils/reducers/GradientReducer';
+import { useGradientStore } from 'utils/store/gradient.store';
 
 const ColorCard = (): JSX.Element => {
-  // Reducer
-  const [gradientState, dispatch] = useReducer(gradientReducer, defaultGradients);
+  // Gradient Store
+  const gradients = useGradientStore((state) => state.gradients);
+  const selectedGradient = useGradientStore((state) => state.selectedGradient);
+  const setSelectedGradient = useGradientStore((state) => state.setSelectedGradient);
+
   return (
     <div className='firefox-padding-fix border-t p-5 pr-3 dark:border-lite-dark'>
       <h2 className='font-bold'>Colors</h2>
       <div className='mt-3 grid grid-cols-4 gap-3'>
-        {gradientState.gradients.map((gradient) => (
+        {gradients.map((gradient) => (
           <button
             key={gradient.id}
             style={{
@@ -22,14 +23,11 @@ const ColorCard = (): JSX.Element => {
             }}
             className={cn(
               'h-9 w-9 rounded-lg', 
-              Object.is(JSON.stringify(gradient), JSON.stringify(gradientState.selectedGradient)) 
+              Object.is(JSON.stringify(gradient), JSON.stringify(selectedGradient)) 
                 ? 'ring-2 ring-blue-400' 
                 : ''
             )}
-            onClick={() => dispatch({
-              type: 'selected-gradient',
-              gradient: gradient
-            })}
+            onClick={() => setSelectedGradient(() => gradient)}
           />
         ))}
       </div>
