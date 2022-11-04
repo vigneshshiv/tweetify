@@ -30,7 +30,7 @@ const Header = ({ setIsPanelOpen }: { setIsPanelOpen: Dispatcher<boolean> }): JS
       <div className='h-full w-auto pl-4 lg:w-56'>
         <div className='relative flex h-full items-center justify-end gap-x-4'>
           <a
-            href='https://github.com/vigneshshiv'
+            href='https://github.com/vigneshshiv/tweetify'
             target='_blank'
             rel='noopener noreferrer'
             className='z-10'
