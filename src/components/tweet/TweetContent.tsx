@@ -28,9 +28,6 @@ const TweetContent = (): JSX.Element => {
     if (navigator.userAgent.indexOf('Firefox') > -1) {
       fetch("/api/tweet-image", {
         method: "POST",
-        headers: {
-          "Content-type": "application/json"
-        },
         body: JSON.stringify({ imageUrl: profileImage })
       })
         .then((res) => res.json())

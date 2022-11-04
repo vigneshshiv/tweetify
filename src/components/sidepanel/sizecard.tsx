@@ -19,7 +19,6 @@ const SizeCard = (): JSX.Element => {
   const opacity = useCardStore((state) => state.opacity);
   const setOpacity = useCardStore((state) => state.setOpacity);
 
-  // Each has it's own size dispatcher
   return (
     <div className='firefox-padding-fix p-5 pr-3'>
       <h2 className='font-bold'>Card</h2>
