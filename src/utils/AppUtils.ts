@@ -107,7 +107,8 @@ export const isStrictlyDifferent = (value1: string, value2: string): boolean => 
 
 // Format Tweet Numbers
 export const formatTweetNumbers = (count: number): string => {
-  if (count < 1e4) return String(count);
+  if (count < 1e3) return String(count);
+  if (count >= 1e3 && count < 1e4) return String(count.toLocaleString());
   if (count >= 1e4 && count < 1e6) {
     return +(count / 1e3).toFixed(1) + "K";
   }
