@@ -104,3 +104,15 @@ export const isDifferent = (value1: any, value2: any, caseSensitive?: boolean): 
 export const isStrictlyDifferent = (value1: string, value2: string): boolean => {
   return !Object.is(JSON.stringify(value1), JSON.stringify(value2));
 };
+
+// Format Tweet Numbers
+export const formatTweetNumbers = (count: number): string => {
+  if (count < 1e4) return String(count);
+  if (count >= 1e4 && count < 1e6) {
+    return +(count / 1e3).toFixed(1) + "K";
+  }
+  if (count >= 1e6 && count < 1e9) {
+    return +(count / 1e6).toFixed(1) + "M";
+  }
+  return +(count / 1e9).toFixed(1) + "B";
+}

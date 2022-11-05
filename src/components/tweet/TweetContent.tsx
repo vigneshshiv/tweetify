@@ -4,17 +4,19 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import cn from 'classnames';
+import { ArrowPathRoundedSquareIcon, ChatBubbleOvalLeftIcon, HeartIcon } from '@heroicons/react/24/outline';
 // Application
 import { Template } from 'utils/types/base.types';
 import { useCardStore } from 'utils/store/card.store';
 import { useTemplateStore } from 'utils/store/template.store';
 import { useTweetStore } from 'utils/store/tweet.store';
+import { formatTweetNumbers } from 'utils/AppUtils';
 
 const TweetContent = (): JSX.Element => {
   // Tweet Info
   const tweetInfo = useTweetStore((state) => state.tweetInfo);
-  const setTweetInfo = useTweetStore((state) => state.setTweetInfo);
-  const { profileImage, name, username, text } = tweetInfo;
+  const { profileImage, name, username, text, retweets, replies, likes } = tweetInfo;
+  const isMetricsVisible = useTweetStore((state) => state.isMetricsVisible);
   // Template
   const selectedTemplate = useTemplateStore((state) => state.selectedTemplate);
   // Font and opacity
@@ -46,7 +48,7 @@ const TweetContent = (): JSX.Element => {
       className='max-w-screen-sm rounded-xl bg-white/70 px-8 py-7 shadow-md backdrop-blur-md'
     >
       <div
-        className={cn('flex gap-x-5 ', Object.is(selectedTemplate, 'justify' as Template) ? 'items-start' : 'items-center')}
+        className={cn('flex gap-x-5', Object.is(selectedTemplate, 'justify' as Template) ? 'items-start' : 'items-center')}
       >
         <Image 
           src={imageData || profileImage}
@@ -86,6 +88,23 @@ const TweetContent = (): JSX.Element => {
           ))}
         </div>
       </div>
+      {/* Public Metrics */}
+      {isMetricsVisible && 
+      <div className={cn('flex mt-3 gap-x-8', !Object.is(selectedTemplate, 'standard' as Template) ? 'pl-[76px]' : '')}>
+        <div className='flex items-center space-x-2'>
+          <ChatBubbleOvalLeftIcon className='w-4 h-4' />
+          <span className='text-sm text-zinc-700'>{formatTweetNumbers(replies)}</span>
+        </div>
+        <div className='flex items-center space-x-2'>
+          <ArrowPathRoundedSquareIcon className='w-4 h-4' />
+          <span className='text-sm text-zinc-700'>{formatTweetNumbers(retweets)}</span>
+        </div>
+        <div className='flex items-center space-x-2'>
+          <HeartIcon className='w-4 h-4' />
+          <span className='text-sm text-zinc-700'>{formatTweetNumbers(likes)}</span>
+        </div>
+      </div>
+      }
     </div>
   );
 }
