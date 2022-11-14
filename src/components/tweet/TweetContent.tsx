@@ -1,6 +1,8 @@
 /**
  * Tweet Content
  */
+'use client';
+
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import cn from 'classnames';
