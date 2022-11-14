@@ -117,3 +117,21 @@ export const formatTweetNumbers = (count: number): string => {
   }
   return +(count / 1e9).toFixed(1) + "B";
 }
+
+// Format Date Time
+export const formatDateTime = (dateTime: string): any => {
+  const localDateTime = new Date(dateTime);
+  // Time
+  let hour = localDateTime.getHours();
+  const ampm = hour >= 12 ? 'PM' : 'AM';
+  hour %= 12;
+  const minute = localDateTime.getMinutes();
+  const time = `${hour}:${('0' + minute).slice(-2)} ${ampm}`;
+  // Date
+  const day = localDateTime.getDate();
+  const month = new Intl.DateTimeFormat('en', { month: 'short' }).format(localDateTime);
+  const year = localDateTime.getFullYear();
+  const date = `${month} ${day}, ${year}`;
+  //
+  return {date, time};
+}

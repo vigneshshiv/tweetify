@@ -24,9 +24,10 @@ const TweetLinkInput = (): JSX.Element => {
       name: includes.users[0].name,
       username: includes.users[0].username,
       text: data.text,
+      createdAt: data.created_at,
       retweets: data.public_metrics.retweet_count,
       replies: data.public_metrics.reply_count,
-      likes: data.public_metrics.like_count
+      likes: data.public_metrics.like_count,
     }));
     // Update Url to blank
     setUrl("");

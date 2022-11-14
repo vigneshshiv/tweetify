@@ -19,8 +19,8 @@ export const SizeConfigRange = {
 
 // Size Config
 export const defaultSize = {
-  height: 332,
-  width: 672,
+  height: 374,
+  width: 724,
   radius: 16,
   opacity: 70
 };
@@ -70,8 +70,8 @@ export const arrowState = {
 const gradientColors = [
   {
     id: 1,
-    from: '#F12711',
-    to: '#F5AF19'
+    from: '#F8856F',
+    to: '#F43C64'
   },
   {
     id: 2,
@@ -105,8 +105,8 @@ const gradientColors = [
   },
   {
     id: 8,
-    from: '#EECDA3',
-    to: '#EF629F'
+    from: '#F12711',
+    to: '#F5AF19'
   }
 ]
 
@@ -134,9 +134,10 @@ export const defaultTweet = {
     name: 'Elon Musk',
     username: 'elonmusk',
     text: "It's not possible to learn everything.\n\nGreat software engineers are not those who know everything but those who can solve problems and adapt.",
+    createdAt: '2022-11-13T23:34:51.000Z',
     retweets: 542,
     replies: 3170,
-    likes: 67221,
+    likes: 67221
   },
   isMetricsVisible: false,
 }

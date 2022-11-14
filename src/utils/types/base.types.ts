@@ -85,6 +85,7 @@ type TweetInfo = {
   name: string;
   username: string;
   text: string;
+  createdAt: string;
   retweets: number;
   replies: number;
   likes: number;

@@ -10,18 +10,20 @@ import { Template } from 'utils/types/base.types';
 import { useCardStore } from 'utils/store/card.store';
 import { useTemplateStore } from 'utils/store/template.store';
 import { useTweetStore } from 'utils/store/tweet.store';
-import { formatTweetNumbers } from 'utils/AppUtils';
+import { formatTweetNumbers, formatDateTime } from 'utils/AppUtils';
 
 const TweetContent = (): JSX.Element => {
   // Tweet Info
   const tweetInfo = useTweetStore((state) => state.tweetInfo);
-  const { profileImage, name, username, text, retweets, replies, likes } = tweetInfo;
+  const { profileImage, name, username, text, retweets, replies, likes, createdAt } = tweetInfo;
   const isMetricsVisible = useTweetStore((state) => state.isMetricsVisible);
   // Template
   const selectedTemplate = useTemplateStore((state) => state.selectedTemplate);
   // Font and opacity
   const font = useCardStore((state) => state.font);
   const opacity = useCardStore((state) => state.opacity);
+  // Date Time
+  const dateTime = formatDateTime(createdAt);
 
   // Firefox fix
   const [imageData, setImageData] = useState('');
@@ -87,6 +89,12 @@ const TweetContent = (): JSX.Element => {
             <p key={idx}>{content}</p>
           ))}
         </div>
+      </div>
+      {/* Date Time */}
+      <div className='mt-2 flex gap-2 text-sm text-neutral-500'>
+        <span>{dateTime.time}</span>
+        <span>&bull;</span>
+        <span>{dateTime.date}</span>
       </div>
       {/* Public Metrics */}
       {isMetricsVisible && 
