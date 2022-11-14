@@ -7,6 +7,7 @@ import cn from 'classnames';
 import { ArrowPathRoundedSquareIcon, ChatBubbleOvalLeftIcon, HeartIcon } from '@heroicons/react/24/outline';
 // Application
 import { Template } from 'utils/types/base.types';
+import { defaultFonts } from 'shared/base.data';
 import { useCardStore } from 'utils/store/card.store';
 import { useTemplateStore } from 'utils/store/template.store';
 import { useTweetStore } from 'utils/store/tweet.store';
@@ -45,7 +46,7 @@ const TweetContent = (): JSX.Element => {
     <div
       style={{
         backgroundColor: cn('rgba(255,255,255,', (opacity/100)),
-        fontFamily: font.value.style.fontFamily
+        fontFamily: font.value ? font.value.style.fontFamily : defaultFonts.fonts[0].id
       }}
       className='max-w-screen-sm rounded-xl bg-white/70 px-8 py-7 shadow-md backdrop-blur-md'
     >

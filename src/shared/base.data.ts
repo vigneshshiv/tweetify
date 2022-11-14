@@ -3,7 +3,6 @@
  */
 import ComicNeueFont from 'components/fonts/ComicNeueFont';
 import InterFont from 'components/fonts/InterFont';
-import ReggaeOneFont from 'components/fonts/ReggaeOneFont';
 import RobotoSlabFont from 'components/fonts/RobotoFont';
 import TelexFont from 'components/fonts/TelexFont';
 import { Template } from 'utils/types/base.types';
@@ -28,6 +27,11 @@ export const defaultSize = {
 // Fonts
 const fonts = [
   {
+    id: 'system-ui',
+    name: 'System UI', 
+    value: null
+  },
+  {
     id: 'Roboto+Slab',
     name: 'Roboto', 
     value: RobotoSlabFont
@@ -41,11 +45,6 @@ const fonts = [
     id: 'Inter',
     name: 'Inter',
     value: InterFont
-  },
-  {
-    id: 'Reggae+One',
-    name: 'Reggae One',
-    value: ReggaeOneFont
   },
   {
     id: 'Telex',
