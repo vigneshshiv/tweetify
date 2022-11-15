@@ -69,13 +69,13 @@ export const arrowState = {
 const gradientColors = [
   {
     id: 1,
-    from: '#F8856F',
-    to: '#F43C64'
+    from: '#FC5C7D',
+    to: '#6A82FB'
   },
   {
     id: 2,
-    from: '#FC5C7D',
-    to: '#6A82FB'
+    from: '#159957',
+    to: '#155799'
   },
   {
     id: 3,
@@ -84,18 +84,18 @@ const gradientColors = [
   },
   {
     id: 4,
-    from: '#159957',
-    to: '#155799'
+    from: '#F8856F',
+    to: '#F43C64'
   },
   {
     id: 5,
-    from: '#76a7f4',
-    to: '#6071d7'
+    from: '#F79D00',
+    to: '#64F38C'
   },
   {
     id: 6,
-    from: '#F79D00',
-    to: '#64F38C'
+    from: '#F12711',
+    to: '#F5AF19'
   },
   {
     id: 7,
@@ -104,9 +104,9 @@ const gradientColors = [
   },
   {
     id: 8,
-    from: '#F12711',
-    to: '#F5AF19'
-  }
+    from: '#76a7f4',
+    to: '#6071d7'
+  },
 ]
 
 export const defaultGradients = {
