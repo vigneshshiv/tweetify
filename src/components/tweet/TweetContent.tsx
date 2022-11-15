@@ -92,7 +92,8 @@ const TweetContent = (): JSX.Element => {
         </div>
       </div>
       {/* Date Time */}
-      <div className='mt-2 flex gap-2 text-sm text-neutral-500'>
+      <div className={cn('mt-2 flex gap-2 text-sm text-neutral-500', 
+          !Object.is(selectedTemplate, 'standard' as Template) ? 'pl-[76px]' : '')}>
         <span>{dateTime.time}</span>
         <span>&bull;</span>
         <span>{dateTime.date}</span>
